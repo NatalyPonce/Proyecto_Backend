@@ -9,6 +9,7 @@ class EmailPreviewController extends Controller
     public function __invoke(){
 
         request()-> validate([
+          //Validaciones de los campos del JSON.
             'customer'=> ['required','string'],
             'email'=>['required', 'email'],
             'payment_method'=>['required', 'in:1,2,3'],
@@ -22,16 +23,23 @@ class EmailPreviewController extends Controller
       /*   //customer = request() -> input('customer') para un valor especifico
     
       */ 
+      //se crea un arreglo vacío.
       $productos = [];
+      //se itera por cada producto en products y se meten al arreglo creado anteriormente. Simulando esta estructura: productos[[producto1], [Producto2]]
       foreach($request['products'] as $producto){
         $productos[]=[$producto['name'], $producto['quantity'], $producto['price'], $producto['quantity']*$producto['price']];
       }
+
+      //se asigna el total en cero.
       $total=0;
+
+      //Aprovechando el arreglo de productos que creamos anteriormente, tomó el subtotal y lo sumo acumulativamente.
       foreach($productos as $producto){
         $total+=end($producto); //el metodo end() me permite acceder al ultimo elemento de un array, que en este caso es el subtotal.
       }
  
       $data = [
+        // guardos los datos a través de la variable data
         'customer'=> $request['customer'],
         'producto'=> $productos,
         'total' => $total,
@@ -52,6 +60,7 @@ class EmailPreviewController extends Controller
         },
 
     ];
+    //Envío data a el EmailPreview
        return view('EmailPreview', $data);
     }
         
