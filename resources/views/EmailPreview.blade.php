@@ -124,6 +124,7 @@
                         </tr>
                     </thead>
                     <tbody>
+    <!-- Con el for each itero sobre el arreglo producto, el cual tiene un arreglo por cada producto. Simulando este resultado: Productos[[producto1], [producto2]]. Se itera sobre cada arreglo para extraer la información y presentarla en la tabla-->
                     @foreach($producto as $product)
                             <tr>
                                 <td>{{ $product[0] }}</td>
@@ -137,6 +138,7 @@
                         <tr>
                             <th colspan="3">Total</th>
                             <th>${{$total}}</th>
+    <!-- Se agrega el total de la compra-->
                         </tr>
                     </tfoot>
                 </table>
@@ -147,6 +149,7 @@
             <p>¡Gracias por confiar en nosotros!</p>
         </div>
         <div class="footer">
+                <!-- Se agrega el año actual y el nombre de la empresa en el pie de página-->
             <p>&copy; {{$anio}} {{$empresa}}. Todos los derechos reservados.</p>
             <p><a href="[URL Política de Privacidad]">Política de Privacidad</a> | <a href="[URL Soporte]">Soporte</a></p>
         </div>
